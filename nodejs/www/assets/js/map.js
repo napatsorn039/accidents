@@ -1,5 +1,5 @@
 
-var map = L.map('map').setView([18.782247245102734, 98.93796916167885], 15);
+var map = L.map('map').setView([18.797358755897037, 98.95500190090638], 15);
 
 
 var gmap = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
         aos_init();
     });
     // เพิ่ม shp geoservice
-
+    test()
 });
 // Locate user and set map view to their location
 map.locate({ setView: true, maxZoom: 15 });
@@ -227,3 +227,51 @@ function onLocationError(e) {
 
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
+
+// สร้างไอคอนที่มีขอบและกระพริบได้
+var blinkingIcon = L.divIcon({
+    className: 'blinking-icon',
+    iconSize: [20, 20], // ขนาดของไอคอน
+    iconAnchor: [10, 20], // จุดยึดไอคอน
+    popupAnchor: [0, -20] // ตำแหน่งป๊อปอัพ
+});
+
+
+const test = () => {
+    console.error('Database');
+    // ดึงข้อมูล JSON จาก API และแสดงบนแผนที่
+    fetch('/acd/api/database/')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(accident => {
+                const lat = accident.latitude;
+                const lng = accident.longitude;
+
+                let date = accident.accident_date
+                // convert_date(date)
+                let formattedDate = convert_date(date);
+
+                L.marker([lat, lng], { icon: blinkingIcon }).addTo(map).bindPopup(`
+                <b>วันที่เกิดเหตุ:</b> ${formattedDate} <br>
+                <b>ประเภทพาหนะ:</b> ${accident.vehicle_type} <br>
+                <b>จำนวนผู้บาดเจ็บหรือเสียชีวิต:</b> ${accident.injured_fatalities_count} <br>
+                <b>สภาพถนน:</b> ${accident.road_condition} <br>
+                <b>สภาพอากาศ:</b> ${accident.weather_condition}
+            `);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+
+const convert_date = (d_ate) => {
+    const date = new Date(d_ate);
+
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // เดือนเริ่มนับจาก 0, ต้องบวก 1
+    const day = String(date.getUTCDate()).padStart(2, '0');
+
+    const formattedDate = `${year}/${month}/${day}`;
+    // console.log(formattedDate); // Output: 2024/09/10
+    return formattedDate
+}

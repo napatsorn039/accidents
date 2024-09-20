@@ -56,6 +56,7 @@
           <li><a href="gwr.html">พื้นที่เสี่ยงอุบัติเหตุบนท้องถนน</a></li>
           <li><a class="services" href="services.html" class="active">แจ้งจุดเกิดอุบัติเหตุ</a></li>
           <li><a href="map.html">แผนที่จุดเกิดอุบัติเหตุ</a></li>
+          <li><a href="manual.html">คู่มือการใช้งาน</a></li>
         </ul>
       </nav><!-- .navbar -->
     </div>
@@ -69,8 +70,8 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>พื้นที่เสี่ยงอุบัติเหตุบนท้องถนน</h2>
-              <p>ในเขตเทศบาลตำบลสุเทพ</p>
+              <h2>แจ้งจุดเกิดอุบัติเหตุบนท้องถนนในเขตเทศบาลตำบลสุเทพ</h2>
+
             </div>
           </div>
         </div>
@@ -79,7 +80,7 @@
         <div class="container">
           <ol>
             <li><a href="index.html">หน้าหลัก</a></li>
-            <li>พื้นที่เสี่ยงอุบัติเหตุบนท้องถนน</li>
+            <li>แจ้งจุดเกิดอุบัติเหตุบนท้องถนนในเขตเทศบาลตำบลสุเทพ</li>
           </ol>
         </div>
       </nav>
@@ -110,15 +111,14 @@
                   <input type="text" class="form-control" id="mapClick_lng" name="longitude" readonly required>
                 </div>
               </div>
-
               <div class="mt-3" id="map" style="height: 400px;"></div>
-
+              <p></p>
               <!-- Vehicle Type -->
               <div class="mb-3">
                 <label for="vehicle_type" class="form-label">ประเภทของยานพาหนะ</label>
                 <select class="form-select" id="vehicle_type" name="vehicle_type" required>
-                  <option value="รถยนต์">รถยนต์</option>
-                  <option value="รถจักรยานยนต์">รถจักรยานยนต์</option>
+                  <option id="aaa" value="รถยนต์">รถยนต์</option>
+                  <option id="bbbb" value="รถจักรยานยนต์">รถจักรยานยนต์</option>
                   <option value="รถจักรยาน">รถจักรยาน</option>
                   <option value="รถบรรทุก">รถบรรทุก</option>
                   <option value="รถตู้">รถตู้</option>
@@ -129,24 +129,26 @@
               <!-- Injured or Fatalities Count -->
               <div class="mb-3">
                 <label for="injured_fatalities_count" class="form-label">จำนวนผู้บาดเจ็บหรือเสียชีวิต</label>
-                <input type="number" class="form-control" id="injured_fatalities_count" name="injured_fatalities_count"
-                  required>
+                <input type="number" class="form-control" id="injured_fatalities_count" placeholder="กรุณากรอกจำนวน"
+                  name="injured_fatalities_count" required>
               </div>
 
               <!-- Road Condition -->
               <div class="mb-3">
                 <label for="road_condition" class="form-label">สภาพถนน</label>
-                <input type="text" class="form-control" id="road_condition" name="road_condition" required>
+                <input type="text" class="form-control" id="road_condition"
+                  placeholder="เช่น สภาพดี, ถนนลื่น, เป็นหลุม, กำลังซ่อมแซม" name="road_condition" required>
               </div>
 
               <!-- Weather Condition -->
               <div class="mb-3">
                 <label for="weather_condition" class="form-label">สภาพอากาศ</label>
-                <input type="text" class="form-control" id="weather_condition" name="weather_condition" required>
+                <input type="text" class="form-control" id="weather_condition" placeholder=" เช่น ฝนตก, หมอกหนา, แดดจ้า"
+                  name="weather_condition" required>
               </div>
 
-              <!-- Image Upload
-              <div class="mb-3">
+              <!-- Image Upload -->
+              <!-- <div class="mb-3">
                 <label for="image_url" class="form-label">รูปภาพ (ถ้ามี)</label>
                 <input class="form-control" type="file" id="image_url" name="image_url">
               </div> -->
@@ -154,6 +156,9 @@
               <!-- Submit Button -->
               <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <!-- <button onclick="myFunction(event)">Click me</button> -->
+
+                <!-- <button class="btn btn-primary" onchange="myFunction(event)">Submit</button> -->
               </div>
 
             </form>

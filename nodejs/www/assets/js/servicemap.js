@@ -1,3 +1,49 @@
+document.addEventListener('DOMContentLoaded', () => {
+    myFunction()
+});
+const myFunction = () => {
+    const form = document.getElementById('accidentForm');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        console.log('Form Data:', data);
+
+        // Send the data to the server
+        fetch('/acd/service/api/accident_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json(); // Parse the JSON response
+            })
+            .then(data => {
+                console.log('Success:', data);
+                alert('บันทึกข้อมูลสำเร็จ'); // Simple alert popup
+                window.location.href = '/map.html';
+
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('บันทึกข้อมูลไม่สำเร็จ'); // Simple alert popup
+            });
+    });
+
+}
+
+
+
+
+
 // Initialize the map
 var map = L.map('map').setView([18.789892142092373, 98.95330879974432], 14);
 
@@ -33,43 +79,37 @@ map.on('click', (event) => {
         .openPopup();
 });
 
-// Wait for the DOM to be fully loaded before running the script
-document.addEventListener('DOMContentLoaded', () => {
-    "use strict";
+// document.addEventListener('DOMContentLoaded', () => {
+//     "use strict";
 
-    // Get the form element
-    const form = document.getElementById('accidentForm');
+//     const form = document.getElementById('accidentForm');
 
-    // Handle form submission
-    form.addEventListener('submit', (event) => {
-        event.preventDefault(); // Prevent the default form submission
+//     form.addEventListener('submit', (event) => {
+//         event.preventDefault();
 
-        // Create a FormData object and convert it to a plain object
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+//         const formData = new FormData(form);
+//         const data = Object.fromEntries(formData.entries());
 
-        // Log the form data to the console for debugging
-        console.log('Form Data:', data);
+//         console.log('Form Data:', data);
 
-        // Send the data to the server
-        fetch('/service/api/accident_data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json(); // Parse the JSON response
-            })
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    });
-});
+//         fetch('/service/api/accident_data', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(data)
+//         })
+//             .then(response => {
+//                 if (!response.ok) {
+//                     throw new Error(`HTTP error! status: ${response.status}`);
+//                 }
+//                 return response.json(); // Parse the JSON response
+//             })
+//             .then(data => {
+//                 console.log('Success:', data);
+//             })
+//             .catch((error) => {
+//                 console.error('Error:', error);
+//             });
+//     });
+// });

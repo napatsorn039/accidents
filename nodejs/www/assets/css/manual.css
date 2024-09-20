@@ -1,0 +1,44 @@
+.navbar .manual,
+.navbar .manual:focus {
+    background: var(--color-primary);
+    padding: 8px 20px;
+    border-radius: 4px;
+    margin: 15px;
+    color: #fff;
+}
+
+.navbar .manual:hover,
+.navbar .manual:focus:hover {
+    color: #fff;
+    background: rgba(13, 66, 255, 0.8);
+}
+
+/* Container for fullscreen gallery */
+.fullscreen-gallery {
+    display: flex;
+    flex-direction: column;
+    /* Stack images vertically */
+    height: 100vh;
+    /* Full height of the viewport */
+    overflow-y: auto;
+    /* Enable vertical scrolling if content overflows */
+}
+
+.fullscreen-gallery img {
+    width: 100vw;
+    /* Full width of the viewport */
+    height: auto;
+    /* Maintain aspect ratio */
+    object-fit: cover;
+    /* Ensure image covers the full width */
+    object-position: center;
+    /* Center the image */
+}
+
+/* Ensure images fit well on smaller screens */
+@media (max-width: 768px) {
+    .fullscreen-gallery img {
+        width: 100%;
+        height: auto;
+    }
+}

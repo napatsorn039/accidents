@@ -129,3 +129,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 tomcat/geoserver-2.25.3-war/geoserver.war
+tomcat/geoserver.war

@@ -1,15 +1,3 @@
-/**
-* Template Name: Logis
-* Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-* Updated: Mar 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# Set main reusable colors and fonts using CSS variables
-# Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --font-default: "Prompt", sans-serif;
@@ -77,6 +65,7 @@ section {
   width: 600px;
   max-width: 100%;
   max-height: 100%;
+
 }
 
 /* Add shadows to create the "card" effect */
@@ -644,6 +633,22 @@ section {
     color: #fff;
     background: rgba(13, 66, 255, 0.8);
   }
+
+  .navbar .manual,
+  .navbar .manual:focus {
+    background: var(--color-primary);
+    padding: 8px 20px;
+    border-radius: 4px;
+    margin: 15px;
+    color: #fff;
+  }
+
+  .navbar .manual:hover,
+  .navbar .manual:focus:hover {
+    color: #fff;
+    background: rgba(13, 66, 255, 0.8);
+  }
+
 
   * .navbar .dropdown ul,
   .navbar .dropdown .dropdown ul {
@@ -1304,6 +1309,7 @@ section {
   }
 }
 
+
 /*--------------------------------------------------------------
 # Stats Counter Section
 --------------------------------------------------------------*/
@@ -1629,6 +1635,38 @@ section {
   background: rgba(13, 66, 255, 0.8);
 }
 
+.box {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid #949494;
+  padding: 10px;
+  width: 150px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border-radius: 5px;
+  font-family: 'Prompt', sans-serif;
+  /* เปลี่ยนฟอนต์ */
+  font-size: 12px;
+  /* กำหนดขนาดฟอนต์ */
+
+}
+
+.color-box {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  border: 1px solid #333;
+  /* ขอบกล่อง */
+}
+
+.box p {
+  display: flex;
+  align-items: center;
+}
+
 @keyframes animate-loading {
   0% {
     transform: rotate(0deg);
@@ -1943,6 +1981,19 @@ section {
   font-family: var(--font-primary);
   font-size: 15px;
   font-weight: 600;
+}
+
+/* ปรับให้ container มีความสูงที่ต้องการ */
+.container {
+  height: 100%;
+}
+
+/* ทำให้ map พอดีกับ container */
+#map {
+  width: 100%;
+  /* กว้าง 100% ของ container */
+  height: 100%;
+  /* สูง 100% ของ container */
 }
 
 .container-fluid {

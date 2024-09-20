@@ -1,79 +1,62 @@
-const express = require('express');
-const router = express.Router();
-const Pool = require('pg').Pool;
+// const express = require('express');
+// const app = express();
+// // const Pool = require('pg').Pool;
 
-// Set up PostgreSQL connection
+// const { Pool } = require('pg')
+const express = require('express');
+const app = express();
+// const axios = require('axios');
+const { Pool } = require("pg");
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const db = new Pool({
-  host: 'postgis',
+  host: 'localhost',
   database: 'geo377',
   user: 'postgres',
-  password: '1234',
-  port: 5433,
+  password: '123',
+  port: 5432,
 });
 
-// Event listener for database errors
-db.on('error', (err) => {
-  console.error('Unexpected error on idle database client:', err);
-  process.exit(-1);
-});
 
-// Insert accident data
-router.post('/accident_data', (req, res) => {
-  const {
-    accident_date,
-    latitude,
-    longitude,
-    vehicle_type,
-    injured_fatalities_count,
-    road_condition,
-    weather_condition
-  } = req.body;
+// app.get('/alldata', (req, res) => {
+//   db.query('select * from public.accident_data').then((r) => {
+//     // console.log(r.rows)
+//     res.status(200).json(r.rows)
+//   })
+// })
 
-  const sql = `
-    INSERT INTO accident_data (
-      accident_date,
-      latitude,
-      longitude,
-      vehicle_type,
-      injured_fatalities_count,
-      road_condition,
-      weather_condition
-    )
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
-  `;
-  const values = [
-    accident_date,
-    latitude,
-    longitude,
-    vehicle_type,
-    injured_fatalities_count,
-    road_condition,
-    weather_condition
-  ];
+// app.get('/alldata/:id', (req, res) => {
+//   const id = req.params.id
+//   db.query('select * from public.accident_data where id = ' + id).then((r) => {
+//     // console.log(r.rows)
+//     res.status(200).json(r.rows)
+//   })
+// })
 
-  // Log the query and values
-  console.log('Executing query:', sql);
-  console.log('With values:', values);
+// app.post('/service/api/accident_data', (req, res) => {
+//   const accidentData = req.body;
+//   console.log('Received accident data:', accidentData);
+//   res.status(200).json({ message: 'Data received successfully' });
+// });
 
-  db.query(sql, values)
-    .then(() => {
-      console.log('Data inserted successfully.');
-      res.status(200).json({ status: "success!" });
-    })
-    .catch((err) => {
-      console.error('Database error during data insertion:', err.message);
-      res.status(500).json({ error: `Database error: ${err.message}` });
-    });
 
-});
-
-// app.get("/test", (req, res) => {
-//   let sql = 'select * from accident_data'
-//   db.query(sql)
-//     .then(r => {
-//       console.log(r.rows)
+//   db.query(sql, values)
+//     .then(() => {
+//       res.status(200).json({ status: "success!" });
 //     })
+//     .catch((err) => {
+//       console.error('Database error:', err);
+//       res.status(500).json({ error: "Database error" });
+//     });
+// });
+
+// app.get("/tygffg/", (req, res) => {
+//   res.send("OK")
 // })
 
 
-module.exports = router;
+
+module.exports = app;
+
+

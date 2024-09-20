@@ -1,0 +1,30 @@
+.leaflet-popup-content {
+    font-family: "Prompt", sans-serif;
+    font-size: 12px;
+}
+
+.blinking-icon {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(255, 0, 0);
+    border: 5px solid rgb(255, 136, 0);
+    /* ขอบของวงกลม */
+    animation: blink 3s infinite;
+    /* การกระพริบ */
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
