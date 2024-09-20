@@ -14,7 +14,7 @@ const db = new Pool({
     host: 'postgis',
     database: 'geo377',
     user: 'postgres',
-    password: '123',
+    password: '1234',
     port: 5432,
 });
 
