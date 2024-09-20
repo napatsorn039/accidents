@@ -19,8 +19,8 @@ var t_suthep = L.tileLayer.wms("http://localhost:8080/geoserver/shp499/wms?", {
     // CQL_FILTER: 'pro_code=20 OR pro_code=21 OR pro_code=24'
 });
 
-var ac_suthep = L.tileLayer.wms("http://localhost:8080/geoserver/shp499/wms?", {
-    layers: "shp499:ac_suthep_heatmap",
+var ac_suthep = L.tileLayer.wms("http://geodev.fun:8082/geoserver/acd/wms?", {
+    layers: "acd:ac_suthep4326",
     format: "image/png",
     transparent: true,
     // maxZoom: 20,
