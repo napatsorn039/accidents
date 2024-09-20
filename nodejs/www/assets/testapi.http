@@ -1,0 +1,10 @@
+###
+GET http://localhost:3000/api/accident_data
+
+###
+GET  http://localhost:3000/api
+
+
+###
+POST http://localhost:3000/api/accident_data
+

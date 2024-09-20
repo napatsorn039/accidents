@@ -1,0 +1,39 @@
+services:
+  postgis:
+    image: postgis/postgis
+    container_name: accident_postgis
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      # - POSTGRES_DB=accident
+    volumes:
+      - ./postgis/:/docker-entrypoint-initdb.d
+    ports:
+      - 5439:5432
+
+  nodejs:
+    image: node
+    container_name: accident_nodejs
+    working_dir: /app/nodejs
+    restart: always
+    depends_on:
+      - postgis
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./nodejs:/app/nodejs
+    ports:
+      - 3600:3000
+    command: bash -c "npm i && npm i -g nodemon  && nodemon server.js"
+
+  tomcat:
+    image: tomcat:8-jre11
+    container_name: rtk_tomcat
+    depends_on:
+      - postgis
+    volumes:
+      - ./tomcat/:/usr/local/tomcat/webapps/
+      # - ./tomcat/fonts/truetype/:/usr/share/fonts/truetype/
+    ports:
+      - 8082:8080
