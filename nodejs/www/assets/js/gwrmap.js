@@ -68,7 +68,14 @@ function onLocationFound(e) {
         .openPopup();
 
     // เพิ่มวงกลมรอบตำแหน่งของผู้ใช้
-    var circle = L.circle(e.latlng, radius).addTo(map);
+    // var circle = L.circle(e.latlng, radius).addTo(map);
+    // เพิ่มวงกลมรอบตำแหน่งของผู้ใช้ (ใช้สีเฉพาะสำหรับวงกลม)
+    var circle = L.circle(e.latlng, {
+        color: '#3388ff', // สีขอบของวงกลม
+        // fillColor: '#3388ff', // สีเติมภายในวงกลม
+        fillOpacity: 0.1, // ความโปร่งแสงของวงกลม
+        radius: radius
+    }).addTo(map);
 
     // ปรับซูมแผนที่แบบคงที่แทนที่จะใช้ fitBounds
     map.setView(e.latlng, 18); // ซูมไปที่ตำแหน่งผู้ใช้ที่ระดับ 18
@@ -87,25 +94,26 @@ map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
 
+// function getColor(d) {
+//     console.log(d);
 function getColor(d) {
-    return d > 20000 ? '#800026' :
-        d > 10000 ? '#BD0026' :
-            d > 5000 ? '#E31A1C' :
-                d > 1000 ? '#FC4E2A' :
-                    d > 500 ? '#FD8D3C' :
-                        d > 20 ? '#FEB24C' :
-                            d > -22890.25 ? '#FED976' :
-                                '#FFEDA0';
+    return d > 183441.59 ? '#B8001F' :
+        d > 98585.95 ? '#E85C0D' :
+            d > 47916.81 ? '#FFEB55' :
+                d > 15584.59 ? '#9ADE7B' :
+                    d > -37058.24 ? '#5D9C59' :
+                        '#FFEDA0';
 }
+
 
 function style(feature) {
     return {
         fillColor: getColor(feature.properties.Predicted),
-        weight: 2,
+        weight: 1,
         opacity: 1,
         color: 'white',
         dashArray: '3',
-        fillOpacity: 0.7
+        fillOpacity: 0.8
     };
 }
 
