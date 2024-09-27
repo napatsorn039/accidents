@@ -12,7 +12,7 @@ const port = 3000
 // // const pg = new Pool({
 const db = new Pool({
     host: 'postgis',
-    database: 'geo377',
+    database: 'geodb',
     user: 'postgres',
     password: '1234',
     port: 5432,

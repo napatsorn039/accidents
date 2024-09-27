@@ -238,11 +238,13 @@ var blinkingIcon = L.divIcon({
 
 
 const test = () => {
-    console.error('Database');
+    // console.error('Database');
     // ดึงข้อมูล JSON จาก API และแสดงบนแผนที่
     fetch('/acd/api/database/')
         .then(response => response.json())
         .then(data => {
+            // console.log(data);
+
             data.forEach(accident => {
                 const lat = accident.latitude;
                 const lng = accident.longitude;

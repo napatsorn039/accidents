@@ -29,7 +29,7 @@ const myFunction = () => {
             .then(data => {
                 console.log('Success:', data);
                 alert('บันทึกข้อมูลสำเร็จ'); // Simple alert popup
-                window.location.href = '/map.html';
+                window.location.href = '/acd/map.html';
 
             })
             .catch((error) => {

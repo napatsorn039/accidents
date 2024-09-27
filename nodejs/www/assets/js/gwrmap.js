@@ -25,19 +25,19 @@ var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //     // minZoom: 14,
 //     // CQL_FILTER: 'pro_code=20 OR pro_code=21 OR pro_code=24'
 // });
-var predicted_gwr = L.tileLayer.wms("http://localhost:8080/geoserver/shp499/wms?", {
-    layers: "shp499:predicted_gwr",
-    format: "image/png",
-    transparent: true,
-    maxZoom: 20,
-    // minZoom: 14,
-    // CQL_FILTER: 'pro_code=20 OR pro_code=21 OR pro_code=24'
-});
+// var predicted_gwr = L.tileLayer.wms("http://localhost:8080/geoserver/shp499/wms?", {
+//     layers: "shp499:predicted_gwr",
+//     format: "image/png",
+//     transparent: true,
+//     maxZoom: 20,
+//     // minZoom: 14,
+//     // CQL_FILTER: 'pro_code=20 OR pro_code=21 OR pro_code=24'
+// });
 
 var overlayMap = {
     // "ขอบเขตตำบลสุเทพ": t_suthep,
     // "ขอบเขตอำเภอเมือง": a_mueang,
-    "พื้นที่เสี่ยงอุบัติเหตุ": predicted_gwr.addTo(map)
+    // "พื้นที่เสี่ยงอุบัติเหตุ": predicted_gwr.addTo(map)
 
 };
 
@@ -86,3 +86,30 @@ function onLocationError(e) {
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
+
+function getColor(d) {
+    return d > 20000 ? '#800026' :
+        d > 10000 ? '#BD0026' :
+            d > 5000 ? '#E31A1C' :
+                d > 1000 ? '#FC4E2A' :
+                    d > 500 ? '#FD8D3C' :
+                        d > 20 ? '#FEB24C' :
+                            d > -22890.25 ? '#FED976' :
+                                '#FFEDA0';
+}
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.Predicted),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+
+L.geoJSON(json__1, { style: style, }).addTo(map)
+
+// layer__1.addTo(map)
